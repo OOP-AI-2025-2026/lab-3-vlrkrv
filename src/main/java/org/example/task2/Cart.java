@@ -7,14 +7,18 @@ public class Cart {
     public Item[] contents;
     int index;
 
-    Cart(Item[] _contents) {
-        this.contents = _contents;
+    public Cart(Item[] contents) {
+        this.contents = contents;
     }
 
     public void removeById(int itemIndex) {
 
         if (index == 0)
             return;
+
+        if (itemIndex < 0 || itemIndex >= index) {
+            return;
+        }
 
         int foundItemIndex = findItemInArray(contents[itemIndex]);
 
@@ -48,7 +52,7 @@ public class Cart {
         return -1;
     }
 
-    void add(Item item) {
+    public void add(Item item) {
         if (isCartFull())
             return;
 
@@ -58,6 +62,14 @@ public class Cart {
 
     public boolean isCartFull() {
         return index == contents.length;
+    }
+
+    public Item[] getContents() {
+        return Arrays.copyOf(contents, index);
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     @Override

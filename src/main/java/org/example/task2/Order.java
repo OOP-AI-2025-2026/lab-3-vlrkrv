@@ -18,9 +18,9 @@ public class Order {
 
         double sum = 0.0;
 
-        for (int i = 0; i < cart.index; i++) {
-
-            sum += cart.contents[i].price;
+        for (int i = 0; i < cart.getIndex(); i++) {
+            Item item = cart.getContents()[i];
+            sum += item.getPrice();
 
             builder.append("Item id: ");
             builder.append(cart.contents[i].id);
@@ -34,7 +34,6 @@ public class Order {
         builder.append("------------------\n");
         builder.append("Total sum: ");
         builder.append(sum);
-
 
         return builder.toString();
     }
